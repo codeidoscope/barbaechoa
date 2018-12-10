@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  class HelloWorldTest {
     @Test
      void testHelloWorld() {
-        HelloWorld helloWorld = new HelloWorld();
+        ServerRunner helloWorld = new ServerRunner();
 
-        assertEquals("hello world", helloWorld.helloWorld());
+        assertEquals("hello marion", helloWorld.helloWorld("marion"));
     }
 }

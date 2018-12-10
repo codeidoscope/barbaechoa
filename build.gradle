@@ -5,7 +5,7 @@ plugins {
 
 group 'com.github.codeidoscope'
 version '1.0-SNAPSHOT'
-jar.archiveName = 'hello.jar'
+jar.archiveName = 'server.jar'
 
 sourceCompatibility = JavaVersion.VERSION_1_10
 targetCompatibility = JavaVersion.VERSION_1_10
@@ -20,14 +20,14 @@ dependencies {
 }
 
 application {
-    mainClassName = 'com.github.codeidoscope.HelloWorld'
+    mainClassName = 'com.github.codeidoscope.ServerRunner'
 }
 
 jar {
     manifest {
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'com.github.codeidoscope.HelloWorld'
+                'Main-Class': 'com.github.codeidoscope.ServerRunner'
         )
     }
     from {
