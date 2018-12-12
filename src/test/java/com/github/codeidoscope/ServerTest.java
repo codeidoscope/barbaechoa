@@ -44,7 +44,7 @@ class ServerTest {
      }
 
      @Test
-     void testTestTests() {
+     void testServerConnectionWasOpened() {
          setUp("");
          server.startServer(8080);
 

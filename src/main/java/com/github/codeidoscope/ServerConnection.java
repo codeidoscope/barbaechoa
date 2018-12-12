@@ -31,7 +31,6 @@ public class ServerConnection implements ServerConnectionWrapper {
 
     @Override
     public String getInput() {
-        System.out.println("Connection made to port " + portNumber);
         try {
             return new BufferedReader(new InputStreamReader(inputStream)).readLine();
         } catch (IOException e) {
@@ -46,6 +45,7 @@ public class ServerConnection implements ServerConnectionWrapper {
 
     @Override
     public void closeConnection() {
+        System.out.println("Closing connection - Bye! \uD83D\uDC4B");
         try {
             inputStream.close();
             outputStream.close();

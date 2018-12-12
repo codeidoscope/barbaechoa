@@ -5,7 +5,7 @@ public class Server {
     private ServerConnectionWrapper serverConnection;
 
     public static void main(String[] args) {
-        if(args.length != 2){
+        if (args.length != 2) {
             System.err.println("Missing port number");
             System.exit(1);
         }
@@ -24,7 +24,11 @@ public class Server {
     public void startServer(int portNumber) {
         try {
             serverConnection.openConnection(portNumber);
-            serverConnection.sendOutput(serverConnection.getInput());
+            System.out.println("Connection made to port " + portNumber);
+            String inputLine;
+            while ((inputLine = serverConnection.getInput()) != null) {
+                serverConnection.sendOutput(getInputAndPrepareOutput(inputLine));
+            }
             serverConnection.closeConnection();
         } catch (RuntimeException e) {
             throw new RuntimeException();
@@ -34,11 +38,11 @@ public class Server {
     String getInputAndPrepareOutput(String inputLine) {
         String output = "";
 
-        if(inputLine.equalsIgnoreCase("MARCO")){
+        if (inputLine.equalsIgnoreCase("MARCO")) {
             output = "POLO";
         }
 
-        if(inputLine.equalsIgnoreCase("ECHO")){
+        if (inputLine.equalsIgnoreCase("ECHO")) {
             output = "ECHO";
         }
 
