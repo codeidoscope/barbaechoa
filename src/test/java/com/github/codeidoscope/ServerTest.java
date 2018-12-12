@@ -50,4 +50,20 @@ class ServerTest {
 
          assertTrue(mockServerConnection.connectionWasOpened);
      }
+
+    @Test
+    void testServerReturnsPoloWhenInputIsMarco() {
+        setUp("Marco");
+        server.startServer(8080);
+
+        assertEquals("POLO\n", stringWriter.toString());
+    }
+
+    @Test
+    void testServerReturnsEchoWhenInputIsEcho() {
+        setUp("Echo");
+        server.startServer(8080);
+
+        assertEquals("ECHO\n", stringWriter.toString());
+    }
  }
