@@ -9,16 +9,14 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerConnection implements ServerConnectionWrapper {
+public class ServerConnection implements ServerConnectionInterface {
     private ServerSocket serverSocket;
     private Socket socket;
     InputStream inputStream;
     OutputStream outputStream;
-    private int portNumber;
 
     @Override
     public void openConnection(int portNumber) {
-        this.portNumber = portNumber;
         try {
             serverSocket = new ServerSocket(portNumber);
             socket = serverSocket.accept();

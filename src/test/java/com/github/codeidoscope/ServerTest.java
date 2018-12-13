@@ -66,4 +66,20 @@ class ServerTest {
 
         assertEquals("ECHO\n", stringWriter.toString());
     }
+
+    @Test
+    void testServerReturnsANewLineWhenInputIsNotMarcoOrEcho() {
+        setUp("not marco or echo");
+        server.startServer(8080);
+
+        assertEquals("\n", stringWriter.toString());
+    }
+
+    @Test
+    void testServerReturnsNothingWhenInputIsNothing() {
+        setUp("");
+        server.startServer(8080);
+
+        assertEquals("", stringWriter.toString());
+    }
  }

@@ -2,7 +2,7 @@ package com.github.codeidoscope;
 
 public class Server {
 
-    private ServerConnectionWrapper serverConnection;
+    private ServerConnectionInterface serverConnection;
 
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -17,7 +17,7 @@ public class Server {
         server.startServer(portNumber);
     }
 
-    public Server(ServerConnectionWrapper serverConnection) {
+    public Server(ServerConnectionInterface serverConnection) {
         this.serverConnection = serverConnection;
     }
 
@@ -36,16 +36,15 @@ public class Server {
     }
 
     String getInputAndPrepareOutput(String inputLine) {
-        String output = "";
 
         if (inputLine.equalsIgnoreCase("MARCO")) {
-            output = "POLO";
+            return "POLO";
         }
 
         if (inputLine.equalsIgnoreCase("ECHO")) {
-            output = "ECHO";
+            return "ECHO";
         }
 
-        return output;
+        return "";
     }
 }

@@ -1,6 +1,6 @@
 package com.github.codeidoscope;
 
-public interface ServerConnectionWrapper {
+public interface ServerConnectionInterface {
 
     void openConnection(int portNumber);
 
