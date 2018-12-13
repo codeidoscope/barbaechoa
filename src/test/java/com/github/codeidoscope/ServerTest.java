@@ -13,34 +13,33 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ServerTest {
 
-    private StringReader stringReader;
-    private BufferedReader bufferedReader;
     private StringWriter stringWriter;
-    PrintWriter printWriter;
     private MockServerConnection mockServerConnection;
-    Server server;
+    private ServerStarter server;
+    private InputValidator inputValidator;
 
     void setUp(String input) {
-        stringReader = new StringReader(input);
-        bufferedReader = new BufferedReader(stringReader);
+        StringReader stringReader = new StringReader(input);
+        BufferedReader bufferedReader = new BufferedReader(stringReader);
         stringWriter = new StringWriter();
-        printWriter = new PrintWriter(stringWriter);
+        PrintWriter printWriter = new PrintWriter(stringWriter);
         mockServerConnection = new MockServerConnection(bufferedReader, printWriter);
-        server = new Server(mockServerConnection);
+        inputValidator = new InputValidator();
+        server = new ServerStarter(mockServerConnection, inputValidator);
     }
 
     @Test
      void testAServerRespondsWithPoloWentUserSendsMarco() {
         setUp("");
 
-        assertEquals("POLO", server.getInputAndPrepareOutput("MARCO"));
+        assertEquals("POLO", inputValidator.getInputAndPrepareOutput("MARCO"));
      }
 
      @Test
      void testAServerRespondsWithEchoWentUserSendsEcho() {
          setUp("");
 
-         assertEquals("ECHO", server.getInputAndPrepareOutput("ECHO"));
+         assertEquals("ECHO", inputValidator.getInputAndPrepareOutput("ECHO"));
      }
 
      @Test
