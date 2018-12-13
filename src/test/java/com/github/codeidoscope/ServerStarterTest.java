@@ -1,6 +1,5 @@
 package com.github.codeidoscope;
 
-
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -11,7 +10,7 @@ import java.io.StringWriter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ServerTest {
+class ServerStarterTest {
 
     private StringWriter stringWriter;
     private MockServerConnection mockServerConnection;
@@ -27,20 +26,6 @@ class ServerTest {
         inputValidator = new InputValidator();
         server = new ServerStarter(mockServerConnection, inputValidator);
     }
-
-    @Test
-     void testAServerRespondsWithPoloWentUserSendsMarco() {
-        setUp("");
-
-        assertEquals("POLO", inputValidator.getInputAndPrepareOutput("MARCO"));
-     }
-
-     @Test
-     void testAServerRespondsWithEchoWentUserSendsEcho() {
-         setUp("");
-
-         assertEquals("ECHO", inputValidator.getInputAndPrepareOutput("ECHO"));
-     }
 
      @Test
      void testServerConnectionWasOpened() {
