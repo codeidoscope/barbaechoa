@@ -12,18 +12,34 @@ import java.net.Socket;
 public class ServerConnection implements ServerConnectionInterface {
     private ServerSocket serverSocket;
     private Socket socket;
-    InputStream inputStream;
-    OutputStream outputStream;
+    private InputStream inputStream;
+    private OutputStream outputStream;
 
     @Override
-    public void openConnection(int portNumber) {
+    public void createServerSocket(int portNumber) {
         try {
             serverSocket = new ServerSocket(portNumber);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
+    @Override
+    public void acceptSocketConnection() {
+        try {
             socket = serverSocket.accept();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
+    @Override
+    public void getIOStreams() {
+        try {
             inputStream = socket.getInputStream();
             outputStream = socket.getOutputStream();
         } catch (IOException e) {
-            throw new RuntimeException();
+            System.err.println(e);
         }
     }
 

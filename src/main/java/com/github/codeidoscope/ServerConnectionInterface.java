@@ -2,7 +2,11 @@ package com.github.codeidoscope;
 
 public interface ServerConnectionInterface {
 
-    void openConnection(int portNumber);
+    void createServerSocket(int portNumber);
+
+    void acceptSocketConnection();
+
+    void getIOStreams();
 
     String getInput();
 

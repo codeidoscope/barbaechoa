@@ -15,7 +15,6 @@ class ServerStarterTest {
     private StringWriter stringWriter;
     private MockServerConnection mockServerConnection;
     private ServerStarter server;
-    private InputValidator inputValidator;
 
     void setUp(String input) {
         StringReader stringReader = new StringReader(input);
@@ -23,13 +22,13 @@ class ServerStarterTest {
         stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
         mockServerConnection = new MockServerConnection(bufferedReader, printWriter);
-        inputValidator = new InputValidator();
+        InputValidator inputValidator = new InputValidator();
         server = new ServerStarter(mockServerConnection, inputValidator);
     }
 
      @Test
      void testServerConnectionWasOpened() {
-         setUp("");
+         setUp("off");
          server.startServer(8080);
 
          assertTrue(mockServerConnection.connectionWasOpened);
@@ -38,7 +37,7 @@ class ServerStarterTest {
     @Test
     void testServerReturnsPoloWhenInputIsMarco() {
         setUp("Marco");
-        server.startServer(8080);
+        server.inputLoop();
 
         assertEquals("POLO\n", stringWriter.toString());
     }
@@ -46,7 +45,7 @@ class ServerStarterTest {
     @Test
     void testServerReturnsEchoWhenInputIsEcho() {
         setUp("Echo");
-        server.startServer(8080);
+        server.inputLoop();
 
         assertEquals("ECHO\n", stringWriter.toString());
     }
@@ -54,7 +53,7 @@ class ServerStarterTest {
     @Test
     void testServerReturnsANewLineWhenInputIsNotMarcoOrEcho() {
         setUp("not marco or echo");
-        server.startServer(8080);
+        server.inputLoop();
 
         assertEquals("\n", stringWriter.toString());
     }
@@ -62,7 +61,7 @@ class ServerStarterTest {
     @Test
     void testServerReturnsNothingWhenInputIsNothing() {
         setUp("");
-        server.startServer(8080);
+        server.inputLoop();
 
         assertEquals("", stringWriter.toString());
     }

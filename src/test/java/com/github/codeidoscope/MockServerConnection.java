@@ -8,16 +8,26 @@ import java.io.PrintWriter;
 public class MockServerConnection implements ServerConnectionInterface {
     private final BufferedReader input;
     private final PrintWriter output;
-    public boolean connectionWasOpened = false;
+    boolean connectionWasOpened = false;
 
-    public MockServerConnection(BufferedReader input, PrintWriter output) {
+    MockServerConnection(BufferedReader input, PrintWriter output) {
         this.output = output;
         this.input = input;
     }
 
     @Override
-    public void openConnection(int portNumber) {
+    public void createServerSocket(int portNumber) {
+
+    }
+
+    @Override
+    public void acceptSocketConnection() {
         connectionWasOpened = true;
+    }
+
+    @Override
+    public void getIOStreams() {
+
     }
 
     @Override
