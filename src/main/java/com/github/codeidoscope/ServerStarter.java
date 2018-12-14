@@ -17,7 +17,7 @@ class ServerStarter {
             serverConnection.acceptSocketConnection();
             serverConnection.getIOStreams();
             try {
-                inputLoop();
+                takesUserInputAndPrintsOutputUntilServerShouldStop();
             } catch (RuntimeException e) {
                 throw new RuntimeException();
             }
@@ -25,7 +25,7 @@ class ServerStarter {
         serverConnection.closeConnection();
     }
 
-    void inputLoop() {
+    void takesUserInputAndPrintsOutputUntilServerShouldStop() {
         String inputLine;
         while ((inputLine = serverConnection.getInput()) != null) {
             if (inputLine.equalsIgnoreCase("off")) {

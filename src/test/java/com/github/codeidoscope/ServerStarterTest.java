@@ -37,7 +37,7 @@ class ServerStarterTest {
     @Test
     void testServerReturnsPoloWhenInputIsMarco() {
         setUp("Marco");
-        server.inputLoop();
+        server.takesUserInputAndPrintsOutputUntilServerShouldStop();
 
         assertEquals("POLO\n", stringWriter.toString());
     }
@@ -45,7 +45,7 @@ class ServerStarterTest {
     @Test
     void testServerReturnsEchoWhenInputIsEcho() {
         setUp("Echo");
-        server.inputLoop();
+        server.takesUserInputAndPrintsOutputUntilServerShouldStop();
 
         assertEquals("ECHO\n", stringWriter.toString());
     }
@@ -53,7 +53,7 @@ class ServerStarterTest {
     @Test
     void testServerReturnsANewLineWhenInputIsNotMarcoOrEcho() {
         setUp("not marco or echo");
-        server.inputLoop();
+        server.takesUserInputAndPrintsOutputUntilServerShouldStop();
 
         assertEquals("\n", stringWriter.toString());
     }
@@ -61,7 +61,7 @@ class ServerStarterTest {
     @Test
     void testServerReturnsNothingWhenInputIsNothing() {
         setUp("");
-        server.inputLoop();
+        server.takesUserInputAndPrintsOutputUntilServerShouldStop();
 
         assertEquals("", stringWriter.toString());
     }
